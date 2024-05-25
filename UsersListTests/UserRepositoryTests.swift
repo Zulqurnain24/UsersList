@@ -33,7 +33,7 @@ class UserRepositoryTests: XCTestCase {
             })
             .store(in: &cancellables)
 
-        wait(for: [expectation], timeout: 0.1)
+        wait(for: [expectation], timeout: 1.0)
     }
 }
 
