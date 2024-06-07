@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserListView: View {
     @StateObject var store: Store
-
+  
     var body: some View {
         NavigationView {
             VStack {
@@ -30,10 +30,14 @@ struct UserListView: View {
             }
             .navigationTitle("Users")
             .task { @MainActor in
-                store.send(.fetchUsers)
-                store.bind(repository: UserRepositoryImpl())
+                bindState()
+                appReducer(state: &store.state, action: .fetchUsers)
             }
         }
+    }
+
+    fileprivate func bindState() {
+        store.bind(repository: UserRepositoryImpl())
     }
 }
 

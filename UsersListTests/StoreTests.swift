@@ -36,8 +36,8 @@ class StoreTests: XCTestCase {
             }
             .store(in: &cancellables)
 
-        store.send(.fetchUsers)
-        store.send(.fetchUsersSuccess([User(id: 1, name: "John Doe", email: "john.doe@example.com")]))
+        appReducer(state: &store.state, action: .fetchUsers)
+        appReducer(state: &store.state, action: .fetchUsersSuccess([User(id: 1, name: "John Doe", email: "john.doe@example.com")]))
 
         wait(for: [expectation], timeout: 1.0)
     }
@@ -57,8 +57,8 @@ class StoreTests: XCTestCase {
             }
             .store(in: &cancellables)
 
-        store.send(.fetchUsers)
-        store.send(.fetchUsersFailure("Network Error"))
+        appReducer(state: &store.state, action: .fetchUsers)
+        appReducer(state: &store.state, action: .fetchUsersFailure("Network Error"))
 
         wait(for: [expectation], timeout: 1.0)
     }

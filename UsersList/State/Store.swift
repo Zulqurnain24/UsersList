@@ -9,7 +9,7 @@ import Combine
 import Foundation
 
 class Store: ObservableObject {
-    @Published private(set) var state: AppState
+    @Published var state: AppState
 
     private let reducer: (inout AppState, AppAction) -> Void
     private var cancellables: Set<AnyCancellable> = []
